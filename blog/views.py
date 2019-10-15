@@ -14,3 +14,7 @@ def post_list(request):  # request 변수 - 사용자의 웹 주소가 다 넘�
         'blog/post_list.html',  # 화면 출력 주체 지정
         {'posts': posts}        # 화면 출력에 사용할 데이터 전
     )
+
+
+def homepage(request):
+    return render(request, 'blog/homepage.html', {})
