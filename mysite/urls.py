@@ -16,10 +16,11 @@ Including another URLconf
 # mysite/urls.py
 from django.contrib import admin
 from django.urls import path, include
-# from . import views                           # !!!
+from . import views
 
 urlpatterns = [
-    # path('', views.homepage, name='home'),    # views 파일의 homepage라는 함수 호출
+    path('', views.homepage, name='home'),    # views 파일의 homepage라는 함수 호출
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')),  # include = 'blog.urls'가서 알아봐라!
+    path('blog/', include('blog.urls')),
+    # path('', include('blog.urls')),  # include = 'blog.urls'가서 알아봐라!
 ]
