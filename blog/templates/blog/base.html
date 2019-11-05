@@ -5,19 +5,25 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Gaegu|Gothic+A1|Gugi|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1ef69ce844.js" crossorigin="anonymous"></script>
-
-    <!--<link rel="stylesheet" href="{% static 'css/animate.css' %}">-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <title>장고걸스 튜토리얼</title>
 </head>
 <body>
-    <div class="animated bounce">
-        <h1><a href="blog/">장고걸스 블로그 <i class="fas fa-moon"></i></a></h1>
+    <div class="page-header">
+        <!--http: ... 이렇식으로 다 쓸 필요 없이 urlpatterns에서 지정한 이름만 불러주면 됨(reverseMatch)-->
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <h1><a href="/">장고걸스 블로그 <i class="fas fa-moon"></i></a></h1>
     </div>
-
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">  <!-- 부트스트랩 그리드 시스템 -->
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
 </body>
 </html>

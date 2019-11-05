@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h2>새 글 작성</h2>
+    <form method="POST" class="post-form">   <!--get으로 하면 링크에서 다 보임-->
+        {% csrf_token %}  <!--폼태그에 항상 넣어줌(입력으로인한 해킹을 막기위한 코드)-->
+        {{ form.as_p }}  <!--p태그로 보여줘-->
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
