@@ -13,25 +13,113 @@
 </head>
 <body>
     <div class="page-header">
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         <h1><a href="/">장고걸스 블로그 <i class="fas fa-moon"></i></a></h1>
     </div>
+<!-- 부트스트랩의 그리드 시스템 https://poiemaweb.com/bootstrap-grid-system
+- container 태그 : 자동으로 좌우 공백을 맞춰줌, 가운데 정렬(그리드 시스템 사용을 위한 부모요소, 필수 사항)
+- 반응형 12열 그리드 시스템
+- 레이아웃 구성시 row를 배치하고 행 안에 col-*-*을 필요한 개수만큼 배치
+- col-*-* 열의 구성: xs(폰), sm(태블릿), md(데스크톱), lg(데스크톱) 중의 하나 지정
+- https://idlecomputer.tistory.com/84 -->
 
+<!-- 1-1. .container : 반응형 고정폭 컨테이너, 자동으로 좌우 공백 맞춰줌, 중앙 정렬 -->
+    <!--<div class="container">-->
+<!-- 1-2. container-fluid 태그: 전체폭 유동 컨테이너 -->
+    <!--<div class="container-fluid">-->
+        <!--<table class="table table-hover">-->
+            <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>제목</th>-->
+                    <!--<th>글</th>-->
+                    <!--<th>게시일</th>-->
+                <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--{% for post in posts %}-->
+                <!--<tr>-->
+                    <!--<td>{{ post.title }}</td>-->
+                    <!--<td>{{ post.text }}</td>-->
+                    <!--<td>{{ post.published_date }}</td>-->
+                <!--</tr>-->
+            <!--{% endfor %}-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+
+
+<!-- 2. .container, .row, .col-*-*: -->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+                <!--<table class="table table-hover">-->
+                    <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>제목</th>-->
+                            <!--<th>글</th>-->
+                            <!--<th>게시일</th>-->
+                        <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--{% for post in posts %}-->
+                        <!--<tr>-->
+                            <!--<td>{{ post.title }}</td>-->
+                            <!--<td>{{ post.text }}</td>-->
+                            <!--<td>{{ post.published_date }}</td>-->
+                        <!--</tr>-->
+                    <!--{% endfor %}-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+<!-- 3. .content, .container, .row, .col-*-* -->
+    <!--<div class="content container">-->
+        <!--<div class="row">-->
+            <!--&lt;!&ndash;<div class="col-md-8">&ndash;&gt;-->
+            <!--<div class="col-md-11">-->
+                <!--<table class="table table-hover">-->
+                    <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>제목</th>-->
+                            <!--<th>글</th>-->
+                            <!--<th>게시일</th>-->
+                        <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--{% for post in posts %}-->
+                        <!--<tr>-->
+                            <!--<td>{{ post.title }}</td>-->
+                            <!--<td>{{ post.text }}</td>-->
+                            <!--<td>{{ post.published_date }}</td>-->
+                        <!--</tr>-->
+                    <!--{% endfor %}-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+<!-- 4. detail 페이지로 이동, 넓이 지정 -->
     <div class="content container">
         <div class="row">
-            <div class="col-md-12">
-                <table class="table table-hover">
+            <div class="col-md-11">
+                <table class="table table-hover post">
                     <thead>
                         <tr>
-                            <th>제목</th>
+                            <th style="width: 120px">제목</th>
                             <th>글</th>
-                            <th>게시일</th>
+                            <th style="width: 180px">게시일</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for post in posts %}
                         <tr>
-                            <td>{{ post.title }}</td>
-                            <td>{{ post.text }}</td>
+                            <td class="title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></td>
+                            <td><a href="{% url 'post_detail' pk=post.pk %}">{{ post.text }}</a></td>
                             <td>{{ post.published_date }}</td>
                         </tr>
                     {% endfor %}
@@ -40,6 +128,7 @@
             </div>
         </div>
     </div>
+
 
 </body>
 </html>

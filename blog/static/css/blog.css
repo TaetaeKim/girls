@@ -27,8 +27,13 @@ font-family: 'Gaegu', cursive;*/
     margin-left: 40px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .title {
     font-family: 'Gugi', cursive;
+}
+
+.title a {
+    text-decoration: none;
+    color: rgb(0, 0, 0)
 }
 
 h2 a {
@@ -59,6 +64,9 @@ h2 a {
     font-family: 'Sunflower', sans-serif;
 }
 
+.post a {
+    color: rgb(0, 0, 0)
+}
 
 .post h1 a, .post h1 a:visited {
     color: #000000;
