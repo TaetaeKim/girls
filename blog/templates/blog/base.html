@@ -13,6 +13,7 @@
 </head>
 <body>
     <div class="page-header">
+        <div class="admin"><a href="/admin/">관리자 계정</a></div>
         {% if user.is_authenticated %}  <!-- 로그인한 사용자에게만 보이도록 -->
         <!--http: ... 이런 식으로 다 쓸 필요 없이 urlpatterns에서 지정한 이름만 불러주면 됨(reverseMatch)-->
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>

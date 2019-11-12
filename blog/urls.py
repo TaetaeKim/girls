@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 # 링크에서 작성하면 정순, 아래에서 지정한 name으로 찾아가는게 역순

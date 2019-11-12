@@ -94,3 +94,13 @@ body {
 .container {
     margin-top: 40px;
 }
+
+.admin a {
+    float: left;
+    color: rgba(30, 0, 73, 0.8);
+}
+
+.admin a:hover {
+    text-decoration: none;
+    color: white;
+}

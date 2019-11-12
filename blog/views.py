@@ -52,7 +52,7 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            # post.published_date = timezone.now()  # 수정 날짜를 따로 하는게 좋을 것 같아
+            post.published_date = timezone.now()  # 수정 날짜를 따로 하는게 좋을 것 같아
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
