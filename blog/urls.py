@@ -6,5 +6,6 @@ urlpatterns = [
     # path('url', 사용할 함수 혹은 클래스, 이름)
     path('', views.post_list, name='post_list'),  # 나중에 template에서 view로 접근할 때 사용할 이름 지정
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
-    path('post/new', views.post_new, name='post_new'),
+    path('post/new/', views.post_new, name='post_new'),
+    path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
 ]

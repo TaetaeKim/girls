@@ -13,13 +13,15 @@
 </head>
 <body>
     <div class="page-header">
-        <!--http: ... 이렇식으로 다 쓸 필요 없이 urlpatterns에서 지정한 이름만 불러주면 됨(reverseMatch)-->
+        {% if user.is_authenticated %}  <!-- 로그인한 사용자에게만 보이도록 -->
+        <!--http: ... 이런 식으로 다 쓸 필요 없이 urlpatterns에서 지정한 이름만 불러주면 됨(reverseMatch)-->
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        {% endif %}
         <h1><a href="/">장고걸스 블로그 <i class="fas fa-moon"></i></a></h1>
     </div>
 <div class="content container">
     <div class="row">
-        <div class="col-md-8">  <!-- 부트스트랩 그리드 시스템 -->
+        <div class="col-md-11">  <!-- 부트스트랩 그리드 시스템 -->
             {% block content %}
             {% endblock %}
         </div>

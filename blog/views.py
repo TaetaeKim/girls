@@ -27,6 +27,10 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
+# def post_new(request):
+#     form = PostForm()  # forms.py 내부의 PostForm 클래스
+#     return render(request, 'blog/post_edit.html', {'form': form})
+
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -38,4 +42,19 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
+
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            # post.published_date = timezone.now()  # 수정 날짜를 따로 하는게 좋을 것 같아
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
