@@ -3,8 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- 부트스트랩 최신 버전으로 변경 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 
     <link href="https://fonts.googleapis.com/css?family=Gaegu|Gothic+A1|Gugi|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -13,11 +15,13 @@
 </head>
 <body>
     <div class="page-header">
-        <div class="admin"><a href="/admin/">관리자 계정</a></div>
         {% if user.is_authenticated %}  <!-- 로그인한 사용자에게만 보이도록 -->
         <!--http: ... 이런 식으로 다 쓸 필요 없이 urlpatterns에서 지정한 이름만 불러주면 됨(reverseMatch)-->
-        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <a href="{% url 'post_new' %}" class="top-menu"><i class="fas fa-plus"></i></a>
+        <a href="{% url 'post_draft_list' %}" class="top-menu"><i class="fas fa-edit"></i></a>
         {% endif %}
+        <a href="/admin" class="top-menu"><i class="fas fa-lock"></i></a>
+        <a href="{% url 'post_list' %}" class="top-menu"><i class="fas fa-list-ul"></i></a>
         <h1><a href="/">장고걸스 블로그 <i class="fas fa-moon"></i></a></h1>
     </div>
 <div class="content container">
