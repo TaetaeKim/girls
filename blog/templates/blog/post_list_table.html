@@ -18,6 +18,7 @@
                             <th style="width: 25%">제목</th>
                             <th>글</th>
                             <th style="width: 25%">게시일</th>
+                            <th style="width: 6%">댓글</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -27,6 +28,7 @@
                             <td class="title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></td>
                             <td><a href="{% url 'post_detail' pk=post.pk %}">{{ post.text|truncatechars:100 }}</a></td>
                             <td>{{ post.published_date }}</td>
+                            <td><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comments.count }}</a></td>
                             <td>
                                 {% if user.is_authenticated and user == post.author %}
                                 {# {% if user.is_authenticated and user.username == post.author.username %} #}

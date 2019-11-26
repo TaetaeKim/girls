@@ -2,8 +2,8 @@
 *~
 __pycache__
 myvenv
+db.sqlite3git
 note
 /static
 .DS_Store
 .idea
-db.sqlite3

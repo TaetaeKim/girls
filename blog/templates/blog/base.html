@@ -19,8 +19,12 @@
         <!--http: ... 이런 식으로 다 쓸 필요 없이 urlpatterns에서 지정한 이름만 불러주면 됨(reverseMatch)-->
         <a href="{% url 'post_new' %}" class="top-menu"><i class="fas fa-plus"></i></a>
         <a href="{% url 'post_draft_list' %}" class="top-menu"><i class="fas fa-edit"></i></a>
+        <p class="top-menu" style="font-size: 16px;">{{ user.username }}님 (<a href="{% url 'logout' %}">로그아웃</a>)</p>
+        {% else %}
+        <!--<a href="{% url 'login' %}" class="top-menu">로그인</a>-->
+        <!--<a href="{% url 'admin:index' %}" class="top-menu">관리자</a> 권하지 않는 방법, 관리자는 전혀 다른 주소로 만든다-->
+        <a href="{% url 'login' %}" class="top-menu"><i class="fas fa-lock"></i></a>
         {% endif %}
-        <a href="/admin" class="top-menu"><i class="fas fa-lock"></i></a>
         <a href="{% url 'post_list' %}" class="top-menu"><i class="fas fa-list-ul"></i></a>
         <h1><a href="/">장고걸스 블로그 <i class="fas fa-moon"></i></a></h1>
     </div>

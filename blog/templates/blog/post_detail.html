@@ -32,4 +32,16 @@
     <h1>{{ post.title }}</h1>
     <p>{{ post.text|linebreaksbr }}</p>
 </div>
+
+<hr>
+<strong style="color: rgba(30, 0, 73, 0.8);">댓글</strong><p></p>
+{% for comment in post.comments.all %}
+    <div class="comment">
+        <div class="date">{{ comment.created_date }}</div>
+        <p><strong>{{ comment.author }}</strong> {{ comment.text|linebreaksbr }}</p>
+    </div>
+{% empty %} {# for 루프의 내용이 없을 경우 #}
+    <p>아직 아무 댓글로 달리지 않았어요 :(</p>
+{% endfor %}
+
 {% endblock %}

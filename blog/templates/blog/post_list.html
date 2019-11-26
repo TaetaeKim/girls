@@ -13,6 +13,7 @@
             <!--<p id="text">{{ post.text|linebreaksbr }}</p>-->
             <p id="text">{{ post.text|truncatechars:200 }}</p>
             <hr/>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
         </div>
     {% endfor %}
 {% endblock %}

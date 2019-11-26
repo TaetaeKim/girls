@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="container" style="text-align: center">
+    <h2 class="mt-5"> 이용해주셔서 감사합니다. </h2>
+    <p class="mt-3">
+        <a href="{%url 'login'%}">
+            <button class="btn btn-outline-dark">
+                다시 로그인
+            </button>
+        </a>
+    </p>
+</div>
+{% endblock %}

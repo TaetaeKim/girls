@@ -43,6 +43,7 @@ h2 a {
 .date {
     color: #828282;
     display: inline;
+    margin-bottom: -20px;
 }
 
 .save {
@@ -58,9 +59,10 @@ h2 a {
     float: right;
     font-size: 26pt;
     margin-right: 20px;
+    font-family: 'Sunflower', sans-serif;
 }
 
-.post {
+.post, p {
     margin-bottom: 20px;
     font-family: 'Sunflower', sans-serif;
 }
@@ -104,3 +106,8 @@ body {
     text-decoration: none;
     color: white;
 }
+
+.comment {
+    margin: 0px 0px 0px 0px;
+}
+
