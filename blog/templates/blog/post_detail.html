@@ -3,9 +3,9 @@
 {% block content %}
 <br>
 {% if post.published_date %}
-    <a href="/blog/" id="back"><i class="fas fa-arrow-left"></i> 뒤로가기</a><br><br>
+<a href="/blog/" id="back"><i class="fas fa-arrow-left"></i> 뒤로가기</a><br><br>
 {% else %}
-    <a href="/blog/drafts" id="back"><i class="fas fa-arrow-left"></i> 뒤로가기</a><br><br>
+<a href="/blog/drafts" id="back"><i class="fas fa-arrow-left"></i> 뒤로가기</a><br><br>
 {% endif %}
 <div class="post">
     {% if user.is_authenticated %}
@@ -14,8 +14,9 @@
         <i class="fas fa-trash-alt"></i>
     </a>
 
-    <a style="float: right; margin-left: 5px; margin-right: 5px;" class="btn btn-outline-dark" href="{% url 'post_edit' pk=post.pk %}">
-       <i class="fas fa-pencil-alt"></i>
+    <a style="float: right; margin-left: 5px; margin-right: 5px;" class="btn btn-outline-dark"
+       href="{% url 'post_edit' pk=post.pk %}">
+        <i class="fas fa-pencil-alt"></i>
     </a>
 
     {% if post.published_date %}
@@ -23,9 +24,9 @@
         {{ post.published_date }}
     </div>
     {% else %}
-        <a style="float: right" class="btn btn-outline-dark" href="{% url 'post_publish' pk=post.pk %}">
-            <i class="fas fa-file-upload"></i>
-        </a>
+    <a style="float: right" class="btn btn-outline-dark" href="{% url 'post_publish' pk=post.pk %}">
+        <i class="fas fa-file-upload"></i>
+    </a>
     {% endif %}
 
     {% endif %}
@@ -34,14 +35,47 @@
 </div>
 
 <hr>
-<strong style="color: rgba(30, 0, 73, 0.8);">댓글</strong><p></p>
-{% for comment in post.comments.all %}
-    <div class="comment">
-        <div class="date">{{ comment.created_date }}</div>
-        <p><strong>{{ comment.author }}</strong> {{ comment.text|linebreaksbr }}</p>
-    </div>
-{% empty %} {# for 루프의 내용이 없을 경우 #}
-    <p>아직 아무 댓글로 달리지 않았어요 :(</p>
-{% endfor %}
 
-{% endblock %}
+<!--댓글 등록 단추-->
+<a class="btn btn-outline-dark btn-sm" style="float: right"
+   href="{% url 'add_comment_to_post' pk=post.pk %}">댓글 추가</a>
+<strong style="color: rgba(30, 0, 73, 0.8);">댓글 {{ post.approved_comments.count }}</strong><p></p>
+
+<!--댓글 출력-->
+{% for comment in post.comments.all %}
+<!--승인되지 않은 댓글에 대하여 승인/삭제 버튼 추가-->
+    <!--{% if not comment.approved_comment %}-->
+        <!--{% if user.username == "taetae" %}-->
+        <!--<a href="{% url 'comment_remove' pk=comment.pk %}" style="color: rgba(30, 0, 73, 0.8);">-->
+            <!--<i class="fas fa-times"></i></a>-->
+        <!--<a href="{% url 'comment_approve' pk=comment.pk %}" style="color: rgba(30, 0, 73, 0.8);">-->
+            <!--<i class="fas fa-check"></i></a>-->
+        <!--<div class="comment">-->
+            <!--<div class="date">{{ comment.created_date }}</div>-->
+            <!--<p><strong>{{ comment.author }}</strong> {{ comment.text|linebreaksbr }}</p>-->
+        <!--</div>-->
+        <!--{% endif %}-->
+    <!--{% endif %}-->
+    <!--{% if comment.approved_comment %}-->
+        <!--<div class="comment">-->
+            <!--<div class="date">{{ comment.created_date }}</div>-->
+            <!--<p><strong>{{ comment.author }}</strong> {{ comment.text|linebreaksbr }}</p>-->
+        <!--</div>-->
+    <!--{% endif %}-->
+        {% if user.username == "taetae" or comment.approved_comment %}
+            {% if not comment.approved_comment %}
+                <a href="{% url 'comment_remove' pk=comment.pk %}" style="color: rgba(30, 0, 73, 0.8);">
+                    <i class="fas fa-times"></i></a>
+                <a href="{% url 'comment_approve' pk=comment.pk %}" style="color: rgba(30, 0, 73, 0.8);">
+                    <i class="fas fa-check"></i></a>
+            {% endif %}
+                <div class="comment">
+                    <div class="date">{{ comment.created_date }}</div>
+                    <p><strong>{{ comment.author }}</strong> {{ comment.text|linebreaksbr }}</p>
+                </div>
+        {% endif %}
+        {% empty %} {# for 루프의 내용이 없을 경우 #}
+        <p>아직 아무 댓글로 달리지 않았어요 :(</p>
+    {% endfor %}
+
+    {% endblock %}

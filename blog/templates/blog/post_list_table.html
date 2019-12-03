@@ -9,39 +9,42 @@
 - https://idlecomputer.tistory.com/84 -->
 
 <!-- 4. detail 페이지로 이동, 넓이 지정 -->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-md-11">-->
-                <table class="table table-hover post">
-                    <thead>
-                        <tr>
-                            <th style="width: 25%">제목</th>
-                            <th>글</th>
-                            <th style="width: 25%">게시일</th>
-                            <th style="width: 6%">댓글</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for post in posts %}
-                        <tr>
-                            <td class="title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></td>
-                            <td><a href="{% url 'post_detail' pk=post.pk %}">{{ post.text|truncatechars:100 }}</a></td>
-                            <td>{{ post.published_date }}</td>
-                            <td><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comments.count }}</a></td>
-                            <td>
-                                {% if user.is_authenticated and user == post.author %}
-                                {# {% if user.is_authenticated and user.username == post.author.username %} #}
-                                    <a class="btn btn-outline-dark" href="{% url 'post_edit' pk=post.pk %}">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-md-11">-->
+<table class="table table-hover post">
+    <thead>
+    <tr>
+        <th style="width: 25%">제목</th>
+        <th>글</th>
+        <th style="width: 25%">게시일</th>
+        <th style="width: 6%">댓글</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+    <tr>
+        <td class="title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></td>
+        <td><a href="{% url 'post_detail' pk=post.pk %}">{{ post.text|truncatechars:100 }}</a></td>
+        <td>{{ post.published_date }}</td>
+        <!--승인된 댓글 개수-->
+        <td><a href="{% url 'post_detail' pk=post.pk %}">
+            {{ post.approved_comments.count }}{% if user.username == "taetae" %}/{{ post.need_approved_comments.count }}{% endif %}
+        </a></td>
+        <td>
+            {% if user.is_authenticated and user == post.author %}
+            {# {% if user.is_authenticated and user.username == post.author.username %} #}
+            <a class="btn btn-outline-dark" href="{% url 'post_edit' pk=post.pk %}">
+                <i class="fas fa-pencil-alt"></i>
+            </a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 {% endblock %}

@@ -26,6 +26,13 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
+
+    def need_approved_comments(self):
+        return self.comments.filter(approved_comment=False)
+
+
 
 class Comment(models.Model):
     # related_name 중요한 편리한 기능!

@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>댓글 작성</h1>
+    <form method="POST" class="post-form">
+        {% csrf_token %}  <!--해킹 방지 위한 장치-->
+        {{ form.as_p }}  <!--p태그를 이용해서-->
+        <button type="submit" class="save btn btn-outline-dark">저장</button>
+    </form>
+{% endblock %}
